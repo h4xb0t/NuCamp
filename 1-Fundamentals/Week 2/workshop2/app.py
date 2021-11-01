@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-from banking_pkg import account
 from time import sleep
+from banking_pkg import account
 
 
 def atm_menu(name):
@@ -16,6 +16,7 @@ def atm_menu(name):
 
 
 print("          === Automated Teller Machine ===          ")
+
 while True:
     name = input("Enter name to register: ").title()
     if len(name) < 1 or len(name) > 10:
