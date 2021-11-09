@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+'''This is the main Valorant code'''
 import random
 from time import sleep
 import val_pkg.buy
@@ -24,7 +25,7 @@ print('''
 # BUY PERIOD
 # player wallet is loaded with proper starting amount
 wallet = val_pkg.buy.player_wallet(wallet, round, round_result)
-# cpu_wallet = val_pkg.buy.cpu_wallet(cpu_wallet, round, round_result)
+# cpu_wallet = val_pkg.buy.cpu_wallet_track(cpu_wallet, round, round_result)
 while True:
     print('''
             ┌───────────────────────┐
@@ -33,7 +34,7 @@ while True:
 ''')
     post_purchase_wallet = val_pkg.buy.player_purchase(wallet)
     wallet = post_purchase_wallet
-    # post_purchase_cpu_wallet = val_pkg.buy.cpu_wallet(
+    # post_purchase_cpu_wallet = val_pkg.buy.cpu_wallet_track(
     #     cpu_wallet, round, round_result[round])
     # cpu_wallet = post_purchase_cpu_wallet
     # val_pkg.buy.cpu_purchase(cpu_wallet)

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+'''This module is for the buy phase'''
 from time import sleep
 
 
@@ -83,7 +84,7 @@ def player_purchase(wallet):
                 continue
 
 
-def cpu_wallet(cpu_wallet, round, last_round_result):
+def cpu_wallet_track(cpu_wallet, round, last_round_result):
     '''CPU Wallet Tracker'''
     # wallet = 0
     if round == 13:

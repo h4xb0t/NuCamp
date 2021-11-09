@@ -1,21 +1,7 @@
 #!/usr/bin/env python
 from time import sleep
-
+'''This module is to simulate a game round'''
 # Need a function to compare CPU vs Player1 combat stats
-
-
-def game_round():
-    '''Runs a game round'''
-    round = 1
-    player_win = True
-    print(f"Round {round} begins!")
-    combat()
-    for round, result in round_result.items():
-        last_round_result = result
-    round += 1
-    print(last_round_result)
-    sleep(5)
-    buy_period(round, last_round_result)
 
 
 def combat():
