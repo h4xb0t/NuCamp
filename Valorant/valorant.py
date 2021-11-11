@@ -48,10 +48,6 @@ agent = agent_select()
 wallet = player_wallet(wallet, round, round_result)
 bot_wallet = bot_wallet_func(bot_wallet, round, round_result)
 
-# bot_wallet = val_pkg.buy.bot_wallet_track(bot_wallet, round, round_result)}
-# for win in round_result[round]:
-
-
 while win_count["victory"] <= 12:
     win_count = Counter(round_result.values())
     if win_count["victory"] == 13:
@@ -86,8 +82,6 @@ while win_count["victory"] <= 12:
     wallet = player_wallet(wallet, round, round_result[round])
     bot_wallet = bot_wallet_func(bot_wallet, round, round_result[round])
     round += 1
-    # print(round_result)
-
 
 # Things to fix
 # player and bot can keep weapon if they win the round
