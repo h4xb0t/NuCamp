@@ -56,7 +56,7 @@ def agent_select():
             print("\nPlease choose an agent\n")
             continue
     print(f"\n|| You have chosen {agent}. ||\n")
-    # sleep(1)
+    sleep(1)
     return agent
 
 
