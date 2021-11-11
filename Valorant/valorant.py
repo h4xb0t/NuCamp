@@ -27,8 +27,7 @@ round = 1
 round_result = {}
 win_count = {"victory": 0, "defeat": 0}
 
-# GAME BEGINS
-
+# GAME LAUNCH
 print('''
 ───────────────────────────────────────────────────
             │  Welcome to Valorant  │
@@ -42,12 +41,12 @@ print('''
 # AGENT SELECT
 agent = agent_select()
 
-# BUY PERIOD
-
+# ROUND 1 BUY PHASE
 # player wallet is loaded with proper starting amount
 wallet = player_wallet(wallet, round, round_result)
 bot_wallet = bot_wallet_func(bot_wallet, round, round_result)
 
+# PRIMARY GAME LOOP
 while win_count["victory"] <= 12:
     win_count = Counter(round_result.values())
     if win_count["victory"] == 13:
@@ -55,6 +54,8 @@ while win_count["victory"] <= 12:
         print("|| You have won the match! || ")
         print("|||||||||||||||||||||||||||||\n")
         break
+
+    # BUY PHASE
     print('''
             ┌───────────────────────┐
             │       Buy Phase       │
@@ -66,6 +67,7 @@ while win_count["victory"] <= 12:
     bot_weapon = bot_purchase.bot_weapon
     sleep(1)
     print(f"\n|| Round {round} begins! ||\n")
+
     # COMBAT PHASE BEGINS
     sleep(1)
     print('''
