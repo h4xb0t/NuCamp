@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 '''This is the main (not)Valorant code'''
 from time import sleep
-from val_pkg.buy import bot_purchase
-from val_pkg.buy import bot_wallet_func
-from val_pkg.buy import agent_select
-from val_pkg.buy import player_wallet
-from val_pkg.buy import player_purchase
+from val_pkg.buy import bot_purchase, bot_wallet_func, agent_select, player_wallet, player_purchase
 from val_pkg.round import combat
 from collections import Counter
 
