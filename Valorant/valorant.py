@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 '''This is the main (not)Valorant code'''
 from time import sleep
+from collections import Counter
 from val_pkg.buy import bot_purchase, bot_wallet_func, agent_select, player_wallet, player_purchase
 from val_pkg.round import combat
-from collections import Counter
+
 
 # player values
 agent = ""
@@ -57,6 +58,9 @@ while win_count["victory"] <= 12:
             │       Buy Phase       │
             └───────────────────────┘
 ''')
+    print("|")
+    print(f"\t\t|| Victory: {win_count['victory']} ||")
+    print(f"\t\t||  Defeat: {win_count['defeat']} ||")
     wallet = player_purchase(wallet)
     weapon = player_purchase.weapon
     bot_wallet = bot_purchase(bot_wallet)
@@ -84,4 +88,3 @@ while win_count["victory"] <= 12:
 # Things to fix
 # player and bot can keep weapon if they win the round
 # print to switch sides for round 13
-# print rounds win/loss totals before buy phase of each round
