@@ -60,7 +60,7 @@ SELECT name FROM departments d
 EXCEPT
 SELECT DISTINCT name FROM departments d
 INNER JOIN students s
-ON s.major_department_id = d.id;
+ON s.major_department_id = d.id;apratt
 
 
 

@@ -9,5 +9,6 @@
     "search.exclude": {
         "venv/**": true,
         "data/**": true
-    }
+    },
+    "git.ignoreLimitWarning": true
 }

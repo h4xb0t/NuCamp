@@ -48,8 +48,9 @@ FOREIGN KEY (division_id)
 REFERENCES divisions (id)
 ON DELETE SET NULL;
 
-INSERT INTO divisions (name)
-VALUES ("Atlantic"),("Metropolitan"),("Pacific"),("Central");
+INSERT INTO divisions (name) VALUES
+('Atlantic'), ('Metropolitan'), ('Pacific'), ('Central');
+
 
 INSERT INTO teams (city, name, home_color, away_color, division_id)
 VALUES ('New York', 'Islanders', 'Royal blue', 'White', 2),
