@@ -58,7 +58,7 @@ while win_count["victory"] <= 12:
             │       Buy Phase       │
             └───────────────────────┘
 ''')
-    print("|")
+    print("")
     print(f"\t\t|| Victory: {win_count['victory']} ||")
     print(f"\t\t||  Defeat: {win_count['defeat']} ||")
     wallet = player_purchase(wallet)
