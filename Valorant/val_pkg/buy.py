@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 '''This module is for the buy phase'''
 from time import sleep
-
+import random
 
 def player_wallet(wallet, round, round_result):
     '''Player Wallet Tracker'''
@@ -31,11 +31,11 @@ def player_wallet(wallet, round, round_result):
 def agent_select():
     '''Agent Select'''
     while True:
-        print("1─►Jett")
-        print("2─►Phoenix")
-        print("3─►Sage")
-        print("4─►Brimstone")
-        print("5─►Sova")
+        print("1─► Jett")
+        print("2─► Phoenix")
+        print("3─► Sage")
+        print("4─► Brimstone")
+        print("5─► Sova")
         agent_choice = input("\nSelect your agent: ").lower()
         if agent_choice in ("1", "jett"):
             agent = "Jett"
@@ -64,11 +64,12 @@ def player_purchase(wallet):
     '''Runs to let the user buy weapons pre-round'''
     while True:
         print("\n ||| Weapons |||\n")
-        print("1─►Ghost ----  500")
-        print("2─►Judge ---- 1800")
-        print("3─►Phantom -- 2900")
-        print("4─►Operator - 5000")
-        # print("5─►Keep Current --")
+        print("1─► Ghost ----  500")
+        print("2─► Judge ---- 1800")
+        print("3─► Phantom -- 2900")
+        print("4─► Operator - 5000")
+        if hasattr(player_purchase, 'weapon'):
+            print("5─► Keep Current --")
         weapon = input("\nSelect your weapon: ").lower()
         if weapon in ('1', 'ghost'):
             if wallet >= 500:
@@ -122,6 +123,16 @@ def player_purchase(wallet):
             else:
                 print("\nYou don't have enough to purchase the Operator!")
                 continue
+        if weapon in ('5', 'keep', 'current'):
+            weapon = player_purchase.weapon
+            print("\n|| Keeping current weapon. ||")
+            sleep(1)
+            print(f"\nYou have {wallet} credits remaining.")
+            sleep(1)
+            return wallet
+        else:
+            print("\nYou don't have a weapon to keep!")
+            continue
 
 
 def bot_wallet_func(bot_wallet, round, round_result):
@@ -145,24 +156,54 @@ def bot_wallet_func(bot_wallet, round, round_result):
     return bot_wallet
 
 
-def bot_purchase(bot_wallet):
+def bot_purchase(bot_wallet, round_result):
     '''bot Buy Process'''
-    if bot_wallet >= 5000:
-        bot_wallet -= 5000
-        bot_purchase.bot_weapon = "operator"
+    # UPDATED: Add a list of available weapons with costs
+    weapons = {
+        "ghost": 500,
+        "judge": 1800,
+        "phantom": 2900,
+        "operator": 5000,
+    }
+
+    # UPDATED: Randomize the keep_probability value
+    keep_probability = random.uniform(0, 1)  # Generates a random float between 0 and 1
+
+    # UPDATED: Check if the bot has a weapon and won the previous round
+    if (random.random() < keep_probability and hasattr(bot_purchase, 'bot_weapon') and
+            round_result.get(len(round_result), "") == "defeat"):
+        # Keep the current weapon
+        print("\n|| Bot is keeping its current weapon. ||")
         return bot_wallet
-    if bot_wallet >= 2900:
-        bot_wallet -= 2900
-        bot_purchase.bot_weapon = "phantom"
-        return bot_wallet
-    if bot_wallet >= 1800:
-        bot_wallet -= 1800
-        bot_purchase.bot_weapon = "judge"
-        return bot_wallet
-    elif bot_wallet >= 500:
-        bot_wallet -= 500
-        bot_purchase.bot_weapon = "ghost"
-        return bot_wallet
+    else:
+        # Buy a new weapon
+        for weapon, cost in sorted(weapons.items(), key=lambda x: x[1], reverse=True):
+            if bot_wallet >= cost:
+                bot_wallet -= cost
+                bot_purchase.bot_weapon = weapon
+                return bot_wallet
     return bot_wallet
+
+
+
+# def bot_purchase(bot_wallet):
+#     '''bot Buy Process'''
+#     if bot_wallet >= 5000:
+#         bot_wallet -= 5000
+#         bot_purchase.bot_weapon = "operator"
+#         return bot_wallet
+#     if bot_wallet >= 2900:
+#         bot_wallet -= 2900
+#         bot_purchase.bot_weapon = "phantom"
+#         return bot_wallet
+#     if bot_wallet >= 1800:
+#         bot_wallet -= 1800
+#         bot_purchase.bot_weapon = "judge"
+#         return bot_wallet
+#     elif bot_wallet >= 500:
+#         bot_wallet -= 500
+#         bot_purchase.bot_weapon = "ghost"
+#         return bot_wallet
+#     return bot_wallet
 
 # maybe can check weapon existing i.e. if weapon == ghost; then weapon == ghost

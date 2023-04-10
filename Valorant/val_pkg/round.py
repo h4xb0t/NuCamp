@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import random
 from time import sleep
 '''This module is to simulate a game round'''
 # Need a function to compare bot vs Player1 combat stats
@@ -6,17 +7,18 @@ from time import sleep
 
 def combat(weapon_dmg, weapon_range, weapon_accuracy, bot_dmg, bot_range, bot_accuracy):
     '''Combat phase within a game round'''
-    bot_dmg_total = bot_dmg * bot_range * bot_accuracy
-    player_dmg_total = weapon_dmg * weapon_range * weapon_accuracy
+    bot_dmg_total = bot_dmg * bot_range * random.uniform(bot_accuracy - 0.1, bot_accuracy + 0.1)
+    player_dmg_total = weapon_dmg * weapon_range * random.uniform(weapon_accuracy - 0.1, weapon_accuracy + 0.1)
+
     if player_dmg_total >= bot_dmg_total:
         round_result = "victory"
         sleep(2)
-        print("|| Round Won! ||")
+        print(f"|| Round Won! ||\n\nPlayer damage: {player_dmg_total:.1f} | Bot damage: {bot_dmg_total:.1f}")
         return round_result
     elif bot_dmg_total > player_dmg_total:
         round_result = "defeat"
         sleep(2)
-        print("|| Round Lost! ||")
+        print(f"|| Round Lost! ||\n\nPlayer damage: {player_dmg_total:.1f} | Bot damage: {bot_dmg_total:.1f}")
         return round_result
 
     # player1_dmg = weapon_dmg[player1_weapon]
@@ -30,3 +32,20 @@ def combat(weapon_dmg, weapon_range, weapon_accuracy, bot_dmg, bot_range, bot_ac
     # values are compared in fight vs bot(who also gets random values)
     # winning the fight gives the winner more cash for next round
     # losing the fight gives less cash for next round
+
+
+#OLD
+# def combat(weapon_dmg, weapon_range, weapon_accuracy, bot_dmg, bot_range, bot_accuracy):
+#     '''Combat phase within a game round'''
+#     bot_dmg_total = bot_dmg * bot_range * bot_accuracy
+#     player_dmg_total = weapon_dmg * weapon_range * weapon_accuracy
+#     if player_dmg_total >= bot_dmg_total:
+#         round_result = "victory"
+#         sleep(2)
+#         print("|| Round Won! ||")
+#         return round_result
+#     elif bot_dmg_total > player_dmg_total:
+#         round_result = "defeat"
+#         sleep(2)
+#         print("|| Round Lost! ||")
+#         return round_result
