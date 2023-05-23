@@ -105,5 +105,4 @@ while win_count["victory"] <= 12:
     round += 1
 
 # Things to fix
-# player and bot can keep weapon if they win the round
 # print to switch sides for round 13

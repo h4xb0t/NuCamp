@@ -2,12 +2,15 @@
 from time import sleep
 
 
+def get_grade_input(grade_letter):
+    value = input(f"Enter your number of {grade_letter} grades: ")
+    return int(value) if value else 0
+
+
 def main():
     a_value = int(5)
     b_value = int(3)
     print(f"""
-
-
         |  |  _ |  _  _   _   _   |_  _    |_ |_   _
         |/\| (- | (_ (_) ||| (-   |_ (_)   |_ | ) (-
 
@@ -20,19 +23,19 @@ def main():
              \__ (_| | (_ |_| | (_| |_ (_) |
 
 
-              Each A is worth a base of ${a_value}
-              Each B is worth a base of ${b_value}
+              Each A/E is worth a base of ${a_value}
+              Each B/S is worth a base of ${b_value}
 
 Please enter the information as prompted to calculate your total payout!
     """)
 
     total_classes = int(input("Enter your total number of enrolled classes: "))
 
-    number_a = int(input("Enter your number of A grades: "))
-    number_b = int(input("Enter your number of B grades: "))
-    number_c = int(input("Enter your number of C grades: "))
-    number_d = int(input("Enter your number of D grades: "))
-    number_f = int(input("Enter your number of F grades: "))
+    number_a = get_grade_input('A/E')
+    number_b = get_grade_input('B/S')
+    number_c = get_grade_input('C')
+    number_d = get_grade_input('D')
+    number_f = get_grade_input('F')
 
     if number_a + number_b + number_c + number_d + number_f != total_classes:
         print(
@@ -52,13 +55,13 @@ Please enter the information as prompted to calculate your total payout!
     a_weight_trunc = round(a_weight, 2)
 
     if number_a >= 4:
-        print(f"\nGreat job getting {number_a} A(s)!")
+        print(f"\nGreat job getting {number_a} A/E(s)!")
         print(f"\nYou earned a {a_weight_trunc} mulitplier!")
     elif number_a <= 3:
         print(f"You earned a {a_weight_trunc} mulitplier!")
 
-    print(f"\nYou have earned ${a_payout} per A")
-    print(f"\nYou have earned ${b_payout} per B")
+    print(f"\nYou have earned ${a_payout} per A/E")
+    print(f"\nYou have earned ${b_payout} per B/S")
 
     total_payout = (a_payout * number_a) + (b_payout * number_b)
 
